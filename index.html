@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="id" data-type="software" data-radius="soft" data-buttons="solid">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Habitday membantu Anda merencanakan kebiasaan dan mencatat kemajuan harian." />
+  <meta name="theme-color" content="#eef0f3" />
+  <meta property="og:title" content="Habitday — Pelacak kebiasaan pribadi" />
+  <meta property="og:description" content="Rencanakan rutinitas dan lihat perkembangannya dari hari ke hari." />
+  <meta property="og:type" content="website" />
+  <title>Habitday — Pelacak kebiasaan pribadi</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='12' fill='%231f2de6'/%3E%3Cpath d='M13 11v18m0-9h14m0-9v18' fill='none' stroke='white' stroke-linecap='round' stroke-width='3'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Lewati ke konten</a>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Navigasi aplikasi">
+      <a class="brand" href="#dashboard" aria-label="Habitday, ke ringkasan">
+        <span class="brand-mark" aria-hidden="true">h</span>
+        <span>habitday</span>
+      </a>
+
+      <p class="nav-caption">Ruang pribadi</p>
+      <nav class="nav-list" aria-label="Menu utama">
+        <a class="nav-item active" href="#dashboard" aria-current="page">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg>
+          <span>Ringkasan</span>
+        </a>
+        <a class="nav-item" href="#habits">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5h11M8 12h11M8 18.5h11"/><path d="m3.5 5.5 1.5 1.5 2.5-3M3.5 12l1.5 1.5 2.5-3M3.5 18.5l1.5 1.5 2.5-3"/></svg>
+          <span>Kebiasaan</span>
+        </a>
+        <a class="nav-item" href="#calendar">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M7.5 3.5v3M16.5 3.5v3M3.5 9.5h17M8 13h.01M12 13h.01M16 13h.01M8 16.5h.01M12 16.5h.01"/></svg>
+          <span>Kalender</span>
+        </a>
+        <a class="nav-item" href="#insights">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19.5V12M10 19.5V5M16 19.5v-9M22 19.5V8"/></svg>
+          <span>Insight</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="sidebar-note">
+          <span class="note-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 3.5c2.6 3.4 5.5 6.1 5.5 10a5.5 5.5 0 1 1-11 0c0-3.9 2.9-6.6 5.5-10Z"/><path d="M9.5 14.5a2.5 2.5 0 0 0 2.5 2.5"/></svg>
+          </span>
+          <span><strong id="sidebarStreak">0 hari</strong><small>rangkaian saat ini</small></span>
+        </div>
+        <div class="profile">
+          <div class="avatar" aria-hidden="true">H</div>
+          <div class="profile-copy"><strong>Ruang pribadi</strong><small>Habitday</small></div>
+          <span class="profile-status" aria-label="Akun aktif"></span>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content" id="main">
+      <header class="topbar">
+        <a class="mobile-brand" href="#dashboard" aria-label="Habitday, ke ringkasan">
+          <span class="brand-mark" aria-hidden="true">h</span><span>habitday</span>
+        </a>
+        <p class="top-date" id="topDate"></p>
+        <a class="today-link" href="#dashboard">Hari ini <span aria-hidden="true">↗</span></a>
+      </header>
+
+      <section class="welcome-row" id="dashboard" aria-labelledby="pageTitle">
+        <div>
+          <p class="eyebrow" id="welcomeDate"></p>
+          <h1 id="pageTitle">Selamat pagi</h1>
+          <p class="subtitle" id="welcomeSubtitle">Mulai dari satu kebiasaan hari ini.</p>
+        </div>
+        <button class="primary-btn" id="addHabitBtn" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          <span>Tambah kebiasaan</span>
+        </button>
+      </section>
+
+      <section class="stats-grid" aria-label="Ringkasan hari ini">
+        <article class="stat-card stat-progress">
+          <div class="stat-card-heading">
+            <span class="stat-label">Progres hari ini</span>
+            <span class="stat-symbol" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M20 11.1A8.2 8.2 0 1 1 12.9 4"/><path d="M20 4v6h-6M12 8v4l2.5 1.5"/></svg>
+            </span>
+          </div>
+          <div class="stat-value-row">
+            <strong class="stat-value" id="progressNumber">0/0</strong>
+            <span class="stat-detail" id="progressPercent">0%</span>
+          </div>
+          <div class="progress-track" role="progressbar" aria-label="Progres kebiasaan hari ini" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progressTrack">
+            <span id="progressBar"></span>
+          </div>
+          <p class="stat-foot" id="progressCaption">Belum ada kebiasaan hari ini</p>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-card-heading">
+            <span class="stat-label">Rangkaian saat ini</span>
+            <span class="stat-symbol" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 3.5c2.6 3.4 5.5 6.1 5.5 10a5.5 5.5 0 1 1-11 0c0-3.9 2.9-6.6 5.5-10Z"/><path d="M9.5 14.5a2.5 2.5 0 0 0 2.5 2.5"/></svg>
+            </span>
+          </div>
+          <div class="stat-value-row">
+            <strong class="stat-value" id="streakNumber">0</strong>
+            <span class="stat-detail">hari</span>
+          </div>
+          <p class="stat-foot">Dengan setidaknya satu kebiasaan selesai</p>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-card-heading">
+            <span class="stat-label">Selesai pekan ini</span>
+            <span class="stat-symbol" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 18.5V12M9.5 18.5V6M15 18.5v-9M20.5 18.5V4"/></svg>
+            </span>
+          </div>
+          <div class="stat-value-row">
+            <strong class="stat-value" id="weekNumber">0</strong>
+            <span class="stat-detail">kebiasaan</span>
+          </div>
+          <p class="stat-foot" id="weekCaption">Catatan tujuh hari terakhir</p>
+        </article>
+      </section>
+
+      <div class="content-grid">
+        <section class="habits-panel panel" id="habits" aria-labelledby="habitsTitle">
+          <div class="section-heading">
+            <div>
+              <div class="heading-line">
+                <h2 id="habitsTitle">Kebiasaan hari ini</h2>
+                <span class="count-pill" id="habitCount">0</span>
+              </div>
+              <p id="habitSummary">Daftar rutinitas untuk hari ini.</p>
+            </div>
+            <div class="filter-tabs" role="group" aria-label="Filter kebiasaan">
+              <button class="filter active" type="button" data-filter="all" aria-pressed="true">Semua</button>
+              <button class="filter" type="button" data-filter="pending" aria-pressed="false">Belum</button>
+              <button class="filter" type="button" data-filter="completed" aria-pressed="false">Selesai</button>
+            </div>
+          </div>
+          <div class="habit-list" id="habitList" aria-live="polite"></div>
+          <div class="empty-state" id="emptyState" hidden>
+            <span class="empty-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+            </span>
+            <strong id="emptyTitle">Belum ada kebiasaan</strong>
+            <p id="emptyDescription">Tambahkan rutinitas pertama untuk mengisi daftar ini.</p>
+            <button type="button" class="text-action" id="emptyAddBtn">Tambah kebiasaan</button>
+          </div>
+          <div class="panel-footer">
+            <span id="listFooter">Perubahan tersimpan di perangkat ini</span>
+            <span class="save-indicator"><i aria-hidden="true"></i> Tersimpan</span>
+          </div>
+        </section>
+
+        <aside class="right-column">
+          <section class="calendar-panel panel" id="calendar" aria-labelledby="calendarTitle">
+            <div class="section-heading compact-heading">
+              <div>
+                <h2 id="calendarTitle">Kalender</h2>
+                <p id="calendarSummary">Pilih tanggal untuk melihat catatan.</p>
+              </div>
+              <div class="calendar-arrows">
+                <button type="button" id="prevMonth" aria-label="Bulan sebelumnya"><span aria-hidden="true">‹</span></button>
+                <button type="button" id="nextMonth" aria-label="Bulan berikutnya"><span aria-hidden="true">›</span></button>
+              </div>
+            </div>
+            <div class="calendar-month" id="calendarMonth" aria-live="polite"></div>
+            <div class="weekdays" aria-hidden="true">
+              <span>Sen</span><span>Sel</span><span>Rab</span><span>Kam</span><span>Jum</span><span>Sab</span><span>Min</span>
+            </div>
+            <div class="calendar-days" id="calendarDays" role="group" aria-label="Tanggal dalam kalender"></div>
+            <p class="calendar-selected" id="calendarSelected" aria-live="polite"></p>
+          </section>
+
+          <section class="insight-card panel" id="insights" aria-labelledby="insightTitle">
+            <div class="section-heading compact-heading">
+              <div>
+                <span class="stat-label">Tujuh hari terakhir</span>
+                <h2 id="insightTitle">Aktivitas kebiasaan</h2>
+              </div>
+              <span class="insight-mark" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M4 18.5V12M9.5 18.5V6M15 18.5v-9M20.5 18.5V4"/></svg>
+              </span>
+            </div>
+            <p class="insight-copy" id="insightCopy">Selesaikan kebiasaan untuk mulai melihat ritmemu.</p>
+            <div class="bar-chart" id="barChart" role="img" aria-label="Aktivitas kebiasaan selama tujuh hari"></div>
+            <div class="chart-labels" id="chartLabels" aria-hidden="true"></div>
+            <p class="chart-caption" id="chartCaption">Jumlah kebiasaan yang selesai per hari</p>
+          </section>
+        </aside>
+      </div>
+    </main>
+  </div>
+
+  <nav class="mobile-nav" aria-label="Navigasi utama">
+    <a class="mobile-nav-item active" href="#dashboard" aria-current="page">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg>
+      <span>Ringkasan</span>
+    </a>
+    <a class="mobile-nav-item" href="#habits">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5h11M8 12h11M8 18.5h11"/><path d="m3.5 5.5 1.5 1.5 2.5-3M3.5 12l1.5 1.5 2.5-3M3.5 18.5l1.5 1.5 2.5-3"/></svg>
+      <span>Kebiasaan</span>
+    </a>
+    <a class="mobile-nav-item" href="#calendar">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M7.5 3.5v3M16.5 3.5v3M3.5 9.5h17"/></svg>
+      <span>Kalender</span>
+    </a>
+    <a class="mobile-nav-item" href="#insights">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19.5V12M10 19.5V5M16 19.5v-9M22 19.5V8"/></svg>
+      <span>Insight</span>
+    </a>
+  </nav>
+
+  <dialog class="habit-dialog" id="habitDialog" aria-labelledby="dialogTitle">
+    <form class="dialog-box" id="habitForm">
+      <div class="dialog-heading">
+        <div>
+          <p class="eyebrow">Rutinitas baru</p>
+          <h2 id="dialogTitle">Tambah kebiasaan</h2>
+        </div>
+        <button class="close-modal" id="closeDialog" type="button" aria-label="Tutup formulir">×</button>
+      </div>
+      <label class="field-label" for="newHabitName">Nama kebiasaan</label>
+      <input id="newHabitName" name="name" type="text" maxlength="60" placeholder="Contoh: Membaca 10 halaman" required />
+      <label class="field-label" for="newHabitCategory">Kategori</label>
+      <select id="newHabitCategory" name="category">
+        <option value="Kesehatan">Kesehatan</option>
+        <option value="Belajar">Belajar</option>
+        <option value="Kebugaran">Kebugaran</option>
+        <option value="Mindfulness">Mindfulness</option>
+        <option value="Lainnya">Lainnya</option>
+      </select>
+      <label class="field-label" for="newHabitTime">Waktu pengingat <span>(opsional)</span></label>
+      <input id="newHabitTime" name="time" type="time" />
+      <div class="dialog-actions">
+        <button class="secondary-btn" id="cancelDialog" type="button">Batal</button>
+        <button class="primary-btn" type="submit">Simpan kebiasaan</button>
+      </div>
+      <p class="form-status" id="formStatus" role="status"></p>
+    </form>
+  </dialog>
+
+  <p class="sr-only" id="appStatus" role="status" aria-live="polite"></p>
+  <script src="app.js"></script>
+</body>
+</html>
