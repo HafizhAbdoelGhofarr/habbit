@@ -42,6 +42,7 @@ function loadState() {
     stored = localStorage.getItem(STORAGE_KEY);
   } catch (error) {
     console.error('Data Habitday tidak dapat dibaca dari penyimpanan lokal.', error);
+    saveIndicator.textContent = 'Belum tersimpan';
     appStatus.textContent = 'Penyimpanan lokal tidak tersedia. Perubahan mungkin tidak tersimpan.';
     return createDefaultState();
   }
@@ -58,6 +59,7 @@ function loadState() {
     };
   } catch (error) {
     console.error('Data Habitday tidak dapat dibaca; data awal digunakan.', error);
+    saveIndicator.textContent = 'Belum tersimpan';
     appStatus.textContent = 'Data tersimpan tidak dapat dibaca. Daftar awal ditampilkan.';
     return createDefaultState();
   }
